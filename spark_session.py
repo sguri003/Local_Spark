@@ -1,5 +1,5 @@
 import os
-
+#main class to configure Apache Spark
 os.environ["JAVA_HOME"] = r"C:\Program Files\Java\jdk-17"
 os.environ["HADOOP_HOME"] = r"C:\hadoop"
 os.environ["PATH"] = (
@@ -34,7 +34,7 @@ _JAVA_OPTS = (
 from pyspark.sql import SparkSession
 from delta import configure_spark_with_delta_pip
 from delta.tables import DeltaTable
-
+#call this method to create your Spark Instnace.
 def get_spark(app_name="local-job"):
     builder = (
         SparkSession.builder
@@ -43,6 +43,6 @@ def get_spark(app_name="local-job"):
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
         .config("spark.driver.extraJavaOptions", _JAVA_OPTS)
-        .enableHiveSupport()
+        .enableHiveSupport() #This allows you to save tables using Hive Meta Store
     )
     return configure_spark_with_delta_pip(builder).getOrCreate()
