@@ -24,8 +24,6 @@ spark.stop()
 # Update rows 
 # matching a condition
 #delta_table.update(
-    
-    
 #    condition="Gld_Close > 1150",
 #    set={"Gld_Close": "Gld_Close * 1.0"}  # example — replace with real logic
 #)
